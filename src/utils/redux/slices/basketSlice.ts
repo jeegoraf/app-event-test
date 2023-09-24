@@ -2,7 +2,7 @@ import {createSlice} from '@reduxjs/toolkit'
 import {IProduct} from '../../../types/productsTypes'
 
 const initialState: {goods: IProduct[]} = {
-  goods: []
+  goods: [],
 }
 
 const basketSlice = createSlice({
@@ -13,9 +13,7 @@ const basketSlice = createSlice({
       state.goods.push(action.payload)
     },
     removeProduct (state, action) {
-      state.goods = state.goods.filter(item => {
-        item.id === action.payload.id
-      })
+      state.goods.splice(state.goods.findIndex((arrow) => arrow.id === action.payload), 1);
     },
     clearBasket (state) {
       state.goods = []
@@ -24,5 +22,7 @@ const basketSlice = createSlice({
 })
 
 export const {addProduct, removeProduct, clearBasket} = basketSlice.actions
+
+export const selectBasket = (state: {basket: {goods: IProduct[]}}) => state.basket.goods
 
 export const basketReducer = basketSlice.reducer
