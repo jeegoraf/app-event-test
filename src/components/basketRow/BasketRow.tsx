@@ -2,16 +2,15 @@ import { Box } from '@mui/material'
 import { Button } from '..'
 import { useAppDispatch } from '../../utils/redux/hooks'
 import { removeProduct } from '../../utils/redux/slices/basketSlice'
-import { decPrice } from '../../utils/redux/slices/sumSlice'
+import { IProduct } from '../../types/productsTypes'
 
-export function BasketRow(props: { name: string; price: number; id: number }) {
+export function BasketRow(props: IProduct) {
   const { name, price, id } = props
 
   const dispatch = useAppDispatch()
 
   const handleDelete = () => {
-    dispatch(removeProduct(id))
-    dispatch(decPrice(price))
+    dispatch(removeProduct({ id, price }))
   }
 
   return (

@@ -1,6 +1,11 @@
 import { Box } from '@mui/material'
+import { ReactNode } from 'react'
 
-export default function LoadingPage() {
+type StubPageProps = {
+  children: ReactNode
+}
+
+export function StubPage(props: StubPageProps) {
   return (
     <Box
       sx={{
@@ -11,7 +16,7 @@ export default function LoadingPage() {
         height: '100vh',
       }}
     >
-      ЗАГРУЗКА ...
+      {props.children}
     </Box>
   )
 }

@@ -8,7 +8,6 @@ import { Button } from '..'
 import { useAppDispatch } from '../../utils/redux/hooks'
 import { addProduct } from '../../utils/redux/slices/basketSlice'
 import { useNavigate } from 'react-router-dom'
-import { incPrice } from '../../utils/redux/slices/sumSlice'
 
 export function ProductCard(props: IProduct & { isInBasket: boolean }) {
   const { id, name, price, image, isInBasket } = props
@@ -21,7 +20,6 @@ export function ProductCard(props: IProduct & { isInBasket: boolean }) {
     const product = { id, name, price, image }
     // добавили товар в стор
     dispatch(addProduct(product))
-    dispatch(incPrice(price))
   }
 
   const goToBasket = () => navigate('/basket')

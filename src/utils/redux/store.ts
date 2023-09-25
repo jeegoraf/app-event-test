@@ -1,11 +1,9 @@
 import {configureStore, combineReducers} from '@reduxjs/toolkit'
 import {basketReducer} from './slices/basketSlice'
-import {sumReducer} from './slices/sumSlice'
 import {productsApi} from './queries/productApi'
 
 const rootReducer = combineReducers({
   basket: basketReducer,
-  sum: sumReducer,
   [productsApi.reducerPath]: productsApi.reducer
 })
 

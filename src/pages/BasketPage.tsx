@@ -1,8 +1,11 @@
-import { BasketRow } from '../components/basketRow/BasketRow'
+import { BasketRow } from '../components/basketRow'
 import { useAppSelector } from '../utils/redux/hooks'
-import { selectBasket } from '../utils/redux/slices/basketSlice'
+import {
+  selectBasket,
+  selectTotalPrice,
+} from '../utils/redux/slices/basketSlice'
 import { Box, Typography } from '@mui/material'
-import { selectTotalPrice } from '../utils/redux/slices/sumSlice'
+import { StubPage } from './StubPage'
 
 export function BasketPage() {
   const productsInBasket = useAppSelector(selectBasket)
@@ -10,21 +13,7 @@ export function BasketPage() {
   const totalPrice = useAppSelector(selectTotalPrice)
 
   if (productsInBasket.length === 0)
-    return (
-      <Box
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          height: '100vh',
-          padding: 0,
-          margin: 0,
-        }}
-      >
-        Ваша корзина пуста
-      </Box>
-    )
+    return <StubPage>Ваша корзина пуста</StubPage>
 
   return (
     <Box
@@ -35,9 +24,14 @@ export function BasketPage() {
       }}
     >
       {productsInBasket.map((item) => (
-        <BasketRow name={item.name} price={item.price} id={item.id} />
+        <BasketRow
+          key={item.id}
+          name={item.name}
+          price={item.price}
+          id={item.id}
+        />
       ))}
-      <Typography>Итого: {totalPrice.sum}</Typography>
+      <Typography>Итого: {totalPrice}</Typography>
     </Box>
   )
 }

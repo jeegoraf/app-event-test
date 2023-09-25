@@ -4,7 +4,7 @@ import { IProduct } from '../../types/productsTypes'
 import { useAppSelector } from '../../utils/redux/hooks'
 import { selectBasket } from '../../utils/redux/slices/basketSlice'
 
-export function ProductsList(props: { items: Array<IProduct> | undefined }) {
+export function ProductsList(props: { items: Array<IProduct> }) {
   const productsInBasket = useAppSelector(selectBasket).map((item) => item.id)
 
   return (
