@@ -37,8 +37,15 @@ export function ProductCard(props: IProduct & { isInBasket: boolean }) {
       }}
     >
       <div>
-        <CardMedia sx={{ height: 140 }} image={image} title={name} />
-        <CardContent sx={{}}>
+        <div style={{ backgroundColor: 'white' }}>
+          <CardMedia
+            component="img"
+            sx={{ height: 140, objectFit: 'contain' }}
+            src={image}
+            title={name}
+          ></CardMedia>
+        </div>
+        <CardContent>
           <Typography gutterBottom variant="h6" component="div">
             {name}
           </Typography>
